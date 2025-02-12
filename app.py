@@ -12,6 +12,7 @@ csv_writer = csv.writer(csv_file)
 csv_writer.writerow(['date', 'headline', 'link to listen'])
 counter = 0
 wanted = int(input("Posts wanted: "))
+print()
 
 def parser():
     global counter
@@ -38,14 +39,15 @@ def parser():
         print("Link to listen: " + listen_link)
         print()
 
-        counter += 1
+        # write parsed data to the cms_scrape.csv file
+        csv_writer.writerow([date, headline, listen_link])
 
+        # incrementing the counter
+        counter += 1
+        
         # if wanted number of posts is reached, break the loop
         if counter == wanted:
             break
-
-        # write parsed data to the cms_scrape.csv file
-        csv_writer.writerow([date, headline, listen_link])
 
 while counter < wanted:
     page +=1
